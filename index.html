@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SPA</title>
+
+		<script src="https://fb.me/react-15.0.0-rc.2.js"></script>
+		<script src="https://fb.me/react-dom-15.0.0-rc.2.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/2.0.0/ReactRouter.min.js"></script>
+</head>
+<body>
+	<div id="container"></div>
+	<script type="text/babel">
+	
+	var destination = document.querySelector("#container");
+
+	var { Router, Route, IndexRoute,IndexLink, Link } = ReactRouter;
+
+
+class Home extends React.Component {
+  render() {
+    return (
+      <div>
+         <h2>Home Page</h2>
+      </div>
+    );
+  }
+}
+
+class About extends React.Component {
+  render() {
+    return (
+      <div>
+         <h2>About Page</h2>
+      </div>
+    );
+  }
+}
+
+
+class Contact extends React.Component {
+  render() {
+    return (
+      <div>
+         <h2>Contact Page</h2>
+      </div>
+    );
+  }
+}
+
+
+class APP extends React.Component {
+  render() {
+    return (
+      <div>
+    <h1>Simple SPA</h1>
+    <ul className="header">
+		  <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+          <li><Link to="/about" activeClassName="active">About</Link></li>
+          <li><Link to="/contact" activeClassName="active">Contact</Link></li>
+    </ul>
+              				
+              <div className="content">
+				 {this.props.children}
+			  </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Router>
+
+      <Route path= "/" component = {APP}>
+      <IndexRoute component= {Home} ></IndexRoute>
+      <Route path="about" component={About}></Route>
+      <Route path="contact" component={Contact}></Route>
+      </Route>
+
+</Router>, destination);
+	</script>
+</body>
+</html>
